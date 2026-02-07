@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { unstable_setRequestLocale, getTranslations } from 'next-intl/server';
-import { createServerSupabaseClient, getUserProfile } from '@/lib/supabase/server';
+import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { LanguageToggle } from '@/components/language-switcher';
 import { UserMenu } from '@/components/dashboard/user-menu';
+import type { Database } from '@/types/database';
+
+type UserProfile = Database['public']['Tables']['user_profiles']['Row'];
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -62,7 +65,15 @@ export default async function DashboardLayout({ children, params: { locale } }: 
     redirect(`/${locale}/login`);
   }
 
-  const profile = await getUserProfile();
+  // Fetch profile with explicit type
+  let profile: UserProfile | null = null;
+  const { data } = await supabase
+    .from('user_profiles')
+    .select('*')
+    .eq('id', user.id)
+    .single();
+  profile = data as UserProfile | null;
+
   const t = await getTranslations('nav');
   const isArabic = locale === 'ar';
 

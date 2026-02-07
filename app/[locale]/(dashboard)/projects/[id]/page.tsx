@@ -6,6 +6,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { GenerateAssetButton } from '@/components/dashboard/generate-asset-button';
 import { AssetGrid } from '@/components/dashboard/asset-grid';
+import type { Database } from '@/types/database';
+
+type UserProfile = Database['public']['Tables']['user_profiles']['Row'];
 
 // Icons
 function ArrowLeftIcon({ className }: { className?: string }) {
@@ -56,11 +59,15 @@ export default async function ProjectDetailPage({ params: { locale, id } }: Page
 
   // Fetch user profile for credits info
   const { data: { user } } = await supabase.auth.getUser();
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('id', user?.id)
-    .single();
+  let profile: UserProfile | null = null;
+  if (user) {
+    const { data } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+    profile = data as UserProfile | null;
+  }
 
   const palette = project.palette as Record<string, string> | null;
   const style = project.style as { mood?: string; complexity?: string } | null;

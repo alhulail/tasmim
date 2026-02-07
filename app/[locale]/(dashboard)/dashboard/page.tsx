@@ -62,7 +62,7 @@ export default async function DashboardPage({ params: { locale } }: PageProps) {
       .select('*')
       .eq('id', user.id)
       .single();
-    profile = data;
+    profile = data as UserProfile | null;
   }
 
   // Fetch projects
