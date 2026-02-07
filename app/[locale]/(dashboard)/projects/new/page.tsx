@@ -87,9 +87,9 @@ export default function NewProjectPage() {
         return;
       }
 
-      const { data, error: insertError } = await supabase
+      const result = await supabase
         .from('projects')
-        .insert([{
+        .insert({
           user_id: user.id,
           brand_name: brandName,
           brand_name_ar: brandNameAr || null,
@@ -97,13 +97,15 @@ export default function NewProjectPage() {
           description: description || null,
           style: { mood: style, complexity: 'minimal' },
           palette: colors,
-        }] as any)
+        })
         .select()
         .single();
 
-      if (insertError) throw insertError;
+      if (result.error) throw result.error;
+      if (!result.data) throw new Error('No data returned');
 
-      router.push(`/${locale}/dashboard/projects/${data.id}`);
+      const project = result.data as { id: string };
+      router.push(`/${locale}/dashboard/projects/${project.id}`);
     } catch (err) {
       console.error('Error creating project:', err);
       setError(isArabic ? 'حدث خطأ. حاول مرة أخرى.' : 'Something went wrong. Please try again.');

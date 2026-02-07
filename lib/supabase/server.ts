@@ -1,11 +1,10 @@
 import { createServerClient, type CookieOptions } from '@supabase/ssr';
 import { cookies } from 'next/headers';
-import type { Database } from '@/types/database';
 
 export async function createServerSupabaseClient() {
   const cookieStore = await cookies();
 
-  return createServerClient<Database>(
+  return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -30,7 +29,7 @@ export async function createServerSupabaseClient() {
         },
       },
     }
-  );
+  ) as any;
 }
 
 export async function getUser() {
@@ -39,7 +38,7 @@ export async function getUser() {
   return user;
 }
 
-export async function getUserProfile(): Promise<Database['public']['Tables']['user_profiles']['Row'] | null> {
+export async function getUserProfile() {
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
   
