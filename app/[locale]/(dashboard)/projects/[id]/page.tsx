@@ -9,6 +9,8 @@ import { AssetGrid } from '@/components/dashboard/asset-grid';
 import type { Database } from '@/types/database';
 
 type UserProfile = Database['public']['Tables']['user_profiles']['Row'];
+type Project = Database['public']['Tables']['projects']['Row'];
+type Asset = Database['public']['Tables']['assets']['Row'];
 
 // Icons
 function ArrowLeftIcon({ className }: { className?: string }) {
@@ -40,22 +42,25 @@ export default async function ProjectDetailPage({ params: { locale, id } }: Page
   const isArabic = locale === 'ar';
 
   // Fetch project
-  const { data: project, error } = await supabase
+  const { data: projectData, error } = await supabase
     .from('projects')
     .select('*')
     .eq('id', id)
     .single();
 
-  if (error || !project) {
+  if (error || !projectData) {
     notFound();
   }
+  
+  const project = projectData as Project;
 
   // Fetch assets for this project
-  const { data: assets } = await supabase
+  const { data: assetsData } = await supabase
     .from('assets')
     .select('*')
     .eq('project_id', id)
     .order('created_at', { ascending: false });
+  const assets = (assetsData || []) as Asset[];
 
   // Fetch user profile for credits info
   const { data: { user } } = await supabase.auth.getUser();

@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import type { Database } from '@/types/database';
 
 type UserProfile = Database['public']['Tables']['user_profiles']['Row'];
+type Project = Database['public']['Tables']['projects']['Row'];
+type Asset = Database['public']['Tables']['assets']['Row'];
 
 // Icons
 function FolderPlusIcon({ className }: { className?: string }) {
@@ -66,18 +68,20 @@ export default async function DashboardPage({ params: { locale } }: PageProps) {
   }
 
   // Fetch projects
-  const { data: projects, count: projectsCount } = await supabase
+  const { data: projectsData, count: projectsCount } = await supabase
     .from('projects')
     .select('*', { count: 'exact' })
     .order('created_at', { ascending: false })
     .limit(4);
+  const projects = (projectsData || []) as Project[];
 
   // Fetch recent assets
-  const { data: assets, count: assetsCount } = await supabase
+  const { data: assetsData, count: assetsCount } = await supabase
     .from('assets')
-    .select('*, projects(brand_name, brand_name_ar)')
+    .select('*')
     .order('created_at', { ascending: false })
     .limit(6);
+  const assets = (assetsData || []) as Asset[];
 
   const formatDate = (dateString: string) => {
     return new Intl.DateTimeFormat(locale, {
@@ -190,7 +194,7 @@ export default async function DashboardPage({ params: { locale } }: PageProps) {
           <h2 className="text-lg font-semibold text-stone-900">
             {t('recentProjects.title')}
           </h2>
-          {projects && projects.length > 0 && (
+          {projects.length > 0 && (
             <Link 
               href={`/${locale}/dashboard/projects`}
               className="text-sm text-indigo-600 hover:text-indigo-700 font-medium"
@@ -200,7 +204,7 @@ export default async function DashboardPage({ params: { locale } }: PageProps) {
           )}
         </div>
 
-        {!projects || projects.length === 0 ? (
+        {projects.length === 0 ? (
           <Card className="border-dashed border-stone-300">
             <CardContent className="flex flex-col items-center justify-center py-12 text-center">
               <FolderPlusIcon className="h-12 w-12 text-stone-300 mb-4" />
