@@ -142,37 +142,81 @@ export interface Database {
     Tables: {
       user_profiles: {
         Row: UserProfile;
-        Insert: Omit<UserProfile, 'created_at' | 'updated_at'>;
-        Update: Partial<Omit<UserProfile, 'id' | 'created_at'>>;
+        Insert: Partial<UserProfile> & { id: string; email: string };
+        Update: Partial<UserProfile>;
       };
       projects: {
         Row: Project;
-        Insert: Omit<Project, 'id' | 'created_at' | 'updated_at'>;
+        Insert: {
+          user_id: string;
+          brand_name: string;
+          brand_name_ar?: string | null;
+          industry?: string | null;
+          keywords?: string[];
+          palette?: Record<string, string>;
+          style?: Record<string, string>;
+          target_audience?: string | null;
+          description?: string | null;
+          is_archived?: boolean;
+        };
         Update: Partial<Omit<Project, 'id' | 'user_id' | 'created_at'>>;
       };
       assets: {
         Row: Asset;
-        Insert: Omit<Asset, 'id' | 'created_at' | 'updated_at'>;
+        Insert: {
+          project_id: string;
+          user_id: string;
+          type: AssetType;
+          status?: AssetStatus;
+          prompt?: string | null;
+          model?: string | null;
+          image_url?: string | null;
+          storage_path?: string | null;
+          thumbnail_url?: string | null;
+          metadata?: Record<string, unknown>;
+          is_watermarked?: boolean;
+          is_favorite?: boolean;
+          version?: number;
+          parent_asset_id?: string | null;
+        };
         Update: Partial<Omit<Asset, 'id' | 'user_id' | 'created_at'>>;
       };
       generations: {
         Row: Generation;
-        Insert: Omit<Generation, 'id' | 'created_at'>;
+        Insert: {
+          user_id: string;
+          project_id?: string | null;
+          asset_id?: string | null;
+          request: Record<string, unknown>;
+          response?: Record<string, unknown> | null;
+          provider?: string;
+          model?: string | null;
+          credits_used?: number;
+          is_trial?: boolean;
+          processing_time_ms?: number | null;
+          error_message?: string | null;
+        };
         Update: Partial<Omit<Generation, 'id' | 'user_id' | 'created_at'>>;
       };
       subscriptions: {
         Row: Subscription;
-        Insert: Omit<Subscription, 'id' | 'created_at' | 'updated_at'>;
+        Insert: Partial<Subscription> & { user_id: string; plan: PlanType };
         Update: Partial<Omit<Subscription, 'id' | 'user_id' | 'created_at'>>;
       };
       designer_consults: {
         Row: DesignerConsult;
-        Insert: Omit<DesignerConsult, 'id' | 'created_at'>;
+        Insert: Partial<DesignerConsult> & { user_id: string; month_key: string };
         Update: Partial<Omit<DesignerConsult, 'id' | 'user_id' | 'created_at'>>;
       };
       credit_transactions: {
         Row: CreditTransaction;
-        Insert: Omit<CreditTransaction, 'id' | 'created_at'>;
+        Insert: {
+          user_id: string;
+          amount: number;
+          balance_after: number;
+          reason: string;
+          reference_id?: string | null;
+        };
         Update: never; // Read-only audit table
       };
     };
