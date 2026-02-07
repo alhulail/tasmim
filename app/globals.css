@@ -1,0 +1,385 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&family=Aref+Ruqaa:wght@400;700&family=Tajawal:wght@200;300;400;500;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables */
+:root {
+  /* Fonts */
+  --font-arabic: 'Noto Kufi Arabic', 'Tajawal', sans-serif;
+  --font-arabic-display: 'Aref Ruqaa', serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Clash Display', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Border Radius */
+  --radius: 0.75rem;
+
+  /* Light theme */
+  --background: 40 20% 98%;
+  --foreground: 222 47% 11%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --primary: 222 57% 24%;
+  --primary-foreground: 40 20% 98%;
+
+  --secondary: 42 76% 55%;
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 40 15% 92%;
+  --muted-foreground: 222 20% 40%;
+
+  --accent: 42 76% 55%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 40 15% 88%;
+  --input: 40 15% 88%;
+  --ring: 222 57% 24%;
+}
+
+.dark {
+  --background: 222 47% 6%;
+  --foreground: 40 20% 98%;
+
+  --card: 222 47% 9%;
+  --card-foreground: 40 20% 98%;
+
+  --popover: 222 47% 9%;
+  --popover-foreground: 40 20% 98%;
+
+  --primary: 42 76% 55%;
+  --primary-foreground: 222 47% 11%;
+
+  --secondary: 222 57% 24%;
+  --secondary-foreground: 40 20% 98%;
+
+  --muted: 222 30% 15%;
+  --muted-foreground: 40 15% 65%;
+
+  --accent: 42 76% 55%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 222 30% 18%;
+  --input: 222 30% 18%;
+  --ring: 42 76% 55%;
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* RTL Support */
+  [dir="rtl"] {
+    font-family: var(--font-arabic), sans-serif;
+  }
+
+  [dir="ltr"] {
+    font-family: var(--font-sans), sans-serif;
+  }
+
+  /* Arabic Typography */
+  .font-arabic {
+    font-family: var(--font-arabic);
+    font-feature-settings: "kern" 1;
+    line-height: 1.8;
+  }
+
+  .font-arabic-display {
+    font-family: var(--font-arabic-display);
+    line-height: 1.6;
+  }
+
+  /* Heading Styles */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-family: var(--font-arabic);
+    letter-spacing: 0;
+  }
+
+  /* Input Arabic Support */
+  input[dir="auto"],
+  textarea[dir="auto"] {
+    unicode-bidi: plaintext;
+  }
+
+  /* Selection */
+  ::selection {
+    @apply bg-tasmim-gold-300/40 text-tasmim-navy-900;
+  }
+
+  /* Focus visible */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Tasmim Logo Text */
+  .tasmim-logo {
+    @apply font-arabic-display text-2xl font-bold;
+    background: linear-gradient(135deg, #122c6c 0%, #d4a832 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass Effect */
+  .glass {
+    @apply bg-white/80 dark:bg-tasmim-navy-900/80 backdrop-blur-xl;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl border border-white/20 dark:border-tasmim-navy-700/50 shadow-xl;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--tw-gradient-from), var(--tw-gradient-to));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer Effect */
+  .shimmer {
+    @apply animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent;
+    background-size: 200% 100%;
+  }
+
+  /* Pattern Overlay */
+  .pattern-overlay {
+    @apply absolute inset-0 bg-geometric-pattern opacity-30 pointer-events-none;
+  }
+
+  .arabic-pattern-overlay {
+    @apply absolute inset-0 bg-arabic-pattern animate-pattern-move opacity-50 pointer-events-none;
+  }
+
+  /* Glow Effects */
+  .glow-gold {
+    box-shadow: 0 0 40px rgba(212, 168, 50, 0.3);
+  }
+
+  .glow-navy {
+    box-shadow: 0 0 40px rgba(18, 44, 108, 0.3);
+  }
+
+  /* Button Variants */
+  .btn-tasmim {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-semibold transition-all duration-300;
+    @apply bg-gradient-to-r from-tasmim-navy-800 to-tasmim-navy-600 text-white;
+    @apply hover:from-tasmim-navy-700 hover:to-tasmim-navy-500;
+    @apply active:scale-[0.98];
+  }
+
+  .btn-tasmim-gold {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-semibold transition-all duration-300;
+    @apply bg-gradient-to-r from-tasmim-gold-500 to-tasmim-gold-400 text-tasmim-navy-900;
+    @apply hover:from-tasmim-gold-400 hover:to-tasmim-gold-300;
+    @apply active:scale-[0.98];
+  }
+
+  /* Card Styles */
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl;
+  }
+
+  /* Input Styles */
+  .input-tasmim {
+    @apply w-full rounded-xl border-2 border-tasmim-sand-200 bg-white px-4 py-3;
+    @apply focus:border-tasmim-gold-500 focus:ring-2 focus:ring-tasmim-gold-200;
+    @apply dark:border-tasmim-navy-700 dark:bg-tasmim-navy-900;
+    @apply transition-all duration-200;
+  }
+
+  /* Badge */
+  .badge-gold {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+    @apply bg-tasmim-gold-100 text-tasmim-gold-800;
+    @apply dark:bg-tasmim-gold-900/30 dark:text-tasmim-gold-400;
+  }
+
+  .badge-navy {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+    @apply bg-tasmim-navy-100 text-tasmim-navy-800;
+    @apply dark:bg-tasmim-navy-800/50 dark:text-tasmim-navy-200;
+  }
+
+  /* Status Badges */
+  .status-todo {
+    @apply bg-tasmim-sand-100 text-tasmim-sand-700 dark:bg-tasmim-sand-900/30 dark:text-tasmim-sand-400;
+  }
+
+  .status-in-progress {
+    @apply bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400;
+  }
+
+  .status-done {
+    @apply bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400;
+  }
+
+  .status-failed {
+    @apply bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  /* RTL Utilities */
+  .rtl-flip {
+    transform: scaleX(-1);
+  }
+
+  [dir="rtl"] .rtl-flip {
+    transform: scaleX(1);
+  }
+
+  [dir="rtl"] .ltr-only {
+    display: none;
+  }
+
+  [dir="ltr"] .rtl-only {
+    display: none;
+  }
+
+  /* Text Direction Auto */
+  .text-dir-auto {
+    direction: inherit;
+    unicode-bidi: plaintext;
+  }
+
+  /* Scrollbar Styles */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.tasmim.sand.300') transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: theme('colors.tasmim.sand.300');
+    border-radius: 3px;
+  }
+
+  .dark .scrollbar-thin {
+    scrollbar-color: theme('colors.tasmim.navy.700') transparent;
+  }
+
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: theme('colors.tasmim.navy.700');
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Arabic Numbers */
+  .arabic-nums {
+    font-feature-settings: "lnum" 1;
+  }
+
+  /* Prevent text selection */
+  .no-select {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  /* Watermark */
+  .watermark {
+    position: relative;
+  }
+
+  .watermark::after {
+    content: 'Tasmim';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgba(212, 168, 50, 0.4);
+    transform: rotate(-15deg);
+    pointer-events: none;
+  }
+}
+
+/* Animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient-shift 8s ease infinite;
+}
+
+/* Loading Skeleton */
+.skeleton {
+  @apply animate-pulse bg-gradient-to-r from-tasmim-sand-100 via-tasmim-sand-200 to-tasmim-sand-100;
+  background-size: 200% 100%;
+}
+
+.dark .skeleton {
+  @apply from-tasmim-navy-800 via-tasmim-navy-700 to-tasmim-navy-800;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "common": {
+    "appName": "Tasmim",
+    "appNameAr": "تصميم",
+    "tagline": "AI-Powered Brand Design for MENA",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "submit": "Submit",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "search": "Search",
+    "filter": "Filter",
+    "download": "Download",
+    "share": "Share",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "retry": "Retry",
+    "confirm": "Confirm",
+    "success": "Success",
+    "error": "Error",
+    "or": "or",
+    "learnMore": "Learn more",
+    "getStarted": "Get Started",
+    "tryFree": "Try Free",
+    "viewAll": "View all"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "assets": "Assets",
+    "pricing": "Pricing",
+    "settings": "Settings",
+    "login": "Login",
+    "signup": "Sign Up",
+    "logout": "Logout"
+  },
+  "landing": {
+    "nav": {
+      "login": "Log in",
+      "getStarted": "Start Free"
+    },
+    "hero": {
+      "badge": "Now in Beta",
+      "title": {
+        "line1": "Create Stunning",
+        "line2": "Arabic Brand Identities"
+      },
+      "subtitle": "AI-powered logo and brand asset generation, optimized for Arabic typography and bilingual brand identities.",
+      "cta": {
+        "primary": "Start Creating Free",
+        "secondary": "View Pricing"
+      }
+    },
+    "features": {
+      "title": "Why Choose Tasmim?",
+      "subtitle": "Built specifically for MENA brands and bilingual identities",
+      "ai": {
+        "title": "AI-Powered Design",
+        "description": "Generate professional logos in seconds with advanced AI technology optimized for brand creation."
+      },
+      "arabic": {
+        "title": "Authentic Arabic Typography",
+        "description": "Curated Arabic fonts with proper shaping, perfect for bilingual brand identities."
+      },
+      "editor": {
+        "title": "Full Editing & Customization",
+        "description": "Fine-tune colors, fonts, and layouts with our intuitive editor to get the perfect result."
+      }
+    },
+    "pricing": {
+      "title": "Simple, Transparent Pricing",
+      "subtitle": "Choose the plan that fits your needs",
+      "perMonth": "/month",
+      "popular": "Most Popular",
+      "free": {
+        "name": "Free Trial",
+        "price": "Free",
+        "description": "Try before you commit",
+        "features": ["2 free logo generations", "Watermarked previews", "Basic PNG download"],
+        "cta": "Start Free"
+      },
+      "starter": {
+        "name": "Starter",
+        "description": "For emerging brands",
+        "features": ["15 credits monthly", "Watermark-free downloads", "PNG & SVG formats", "Advanced editor"],
+        "cta": "Choose Starter"
+      },
+      "pro": {
+        "name": "Pro",
+        "description": "For serious businesses",
+        "features": ["50 credits monthly", "All Starter features", "Source files (Figma/AI)", "Monthly designer consult", "Priority support"],
+        "cta": "Choose Pro"
+      }
+    },
+    "cta": {
+      "title": "Ready to Design Your Brand?",
+      "subtitle": "Start free and get 2 professional logos today",
+      "button": "Get Started Free"
+    },
+    "footer": {
+      "rights": "All rights reserved"
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome back",
+      "subtitle": "Sign in to your account",
+      "email": "Email",
+      "password": "Password",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign In",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "google": "Continue with Google"
+    },
+    "signup": {
+      "title": "Create your account",
+      "subtitle": "Start creating beautiful brands",
+      "fullName": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "submit": "Create Account",
+      "hasAccount": "Already have an account?",
+      "signIn": "Sign in",
+      "google": "Sign up with Google",
+      "terms": "By signing up, you agree to our Terms and Privacy Policy"
+    },
+    "errors": {
+      "invalidCredentials": "Invalid email or password",
+      "emailInUse": "This email is already registered",
+      "weakPassword": "Password must be at least 8 characters",
+      "passwordMismatch": "Passwords don't match",
+      "invalidEmail": "Please enter a valid email",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
+  "dashboard": {
+    "welcome": "Welcome back, {name}",
+    "welcomeDefault": "Welcome back",
+    "subtitle": "Here's what's happening with your brand projects",
+    "stats": {
+      "projects": "Projects",
+      "assets": "Assets Generated",
+      "credits": "Credits Remaining",
+      "trialsLeft": "Free Trials Left"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "newProject": "New Project",
+      "newLogo": "Generate Logo"
+    },
+    "recentProjects": {
+      "title": "Recent Projects",
+      "empty": "No projects yet",
+      "emptyDescription": "Create your first project to get started",
+      "createFirst": "Create Your First Project"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Manage your brand projects",
+    "new": "New Project",
+    "empty": { "title": "No projects yet", "description": "Create your first project", "cta": "Create Project" },
+    "create": {
+      "title": "Create New Project",
+      "brandName": "Brand Name (English)",
+      "brandNameAr": "Brand Name (Arabic)",
+      "brandNamePlaceholder": "e.g., Tasmim",
+      "brandNameArPlaceholder": "مثال: تصميم",
+      "industry": "Industry",
+      "industryPlaceholder": "Select an industry",
+      "description": "Brand Description",
+      "descriptionPlaceholder": "Tell us about your brand",
+      "keywords": "Keywords",
+      "keywordsPlaceholder": "Add keywords",
+      "style": "Style",
+      "colors": "Brand Colors",
+      "primaryColor": "Primary",
+      "secondaryColor": "Secondary",
+      "submit": "Create Project"
+    },
+    "industries": {
+      "technology": "Technology",
+      "finance": "Finance",
+      "healthcare": "Healthcare",
+      "education": "Education",
+      "retail": "Retail",
+      "food": "Food & Beverage",
+      "hospitality": "Hospitality",
+      "realestate": "Real Estate",
+      "media": "Media",
+      "fashion": "Fashion",
+      "other": "Other"
+    },
+    "styles": {
+      "modern": "Modern",
+      "minimal": "Minimal",
+      "luxury": "Luxury",
+      "playful": "Playful",
+      "corporate": "Corporate",
+      "traditional": "Traditional",
+      "bold": "Bold",
+      "elegant": "Elegant"
+    }
+  },
+  "assets": {
+    "title": "Assets",
+    "generate": "Generate New",
+    "empty": { "title": "No assets yet", "description": "Generate your first asset" },
+    "types": {
+      "logo": "Logo",
+      "icon": "Icon",
+      "pattern": "Pattern",
+      "social_post": "Social Post",
+      "stationery": "Stationery",
+      "favicon": "Favicon",
+      "wordmark": "Wordmark"
+    },
+    "status": { "todo": "To Do", "in_progress": "In Progress", "done": "Done", "failed": "Failed" }
+  },
+  "generator": {
+    "title": "Generate Asset",
+    "selectProject": "Select Project",
+    "assetType": "Asset Type",
+    "prompt": "Additional Instructions",
+    "promptPlaceholder": "Describe any specific requirements...",
+    "generate": "Generate",
+    "generating": "Generating...",
+    "credits": {
+      "cost": "This will use 1 credit",
+      "remaining": "{count} credits remaining",
+      "trial": "Using free trial ({used}/{total})"
+    }
+  },
+  "pricing": {
+    "title": "Simple, transparent pricing",
+    "subtitle": "Choose the plan that fits your needs",
+    "monthly": "Monthly",
+    "perMonth": "/month",
+    "free": {
+      "name": "Free",
+      "price": "0",
+      "description": "Try Tasmim with 2 free designs",
+      "features": ["2 free logo generations", "Watermarked downloads", "Basic editor"],
+      "cta": "Start Free"
+    },
+    "starter": {
+      "name": "Starter",
+      "price": "19",
+      "description": "Perfect for small businesses",
+      "features": ["15 credits/month", "All asset types", "No watermarks", "PNG & SVG downloads"],
+      "cta": "Get Started",
+      "popular": true
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "49",
+      "description": "For agencies and power users",
+      "features": ["50 credits/month", "Source file downloads", "Designer consultation", "Priority support"],
+      "cta": "Go Pro"
+    },
+    "oneTime": {
+      "name": "Brand Package",
+      "price": "149",
+      "description": "Complete brand identity",
+      "features": ["1 logo design", "Stationery", "2 packages", "Source files", "Unlimited revisions"],
+      "cta": "Get Package"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "profile": { "title": "Profile", "fullName": "Full Name", "email": "Email", "save": "Save" },
+    "preferences": { "title": "Preferences", "language": "Language", "theme": "Theme" },
+    "subscription": { "title": "Subscription", "currentPlan": "Current Plan", "changePlan": "Change Plan" }
+  },
+  "errors": {
+    "notFound": { "title": "Page not found", "description": "This page doesn't exist", "backHome": "Go home" },
+    "serverError": { "title": "Server error", "description": "Something went wrong", "retry": "Try again" }
+  }
+}
