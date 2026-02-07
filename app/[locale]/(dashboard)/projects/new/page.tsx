@@ -87,9 +87,9 @@ export default function NewProjectPage() {
         return;
       }
 
-      const { data, error } = await supabase
+      const { data, error: insertError } = await supabase
         .from('projects')
-        .insert({
+        .insert([{
           user_id: user.id,
           brand_name: brandName,
           brand_name_ar: brandNameAr || null,
@@ -97,11 +97,11 @@ export default function NewProjectPage() {
           description: description || null,
           style: { mood: style, complexity: 'minimal' },
           palette: colors,
-        })
+        }] as any)
         .select()
         .single();
 
-      if (error) throw error;
+      if (insertError) throw insertError;
 
       router.push(`/${locale}/dashboard/projects/${data.id}`);
     } catch (err) {

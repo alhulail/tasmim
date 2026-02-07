@@ -117,13 +117,13 @@ export async function POST(request: NextRequest) {
     // Create asset record with "in_progress" status
     const { data: asset, error: assetError } = await supabase
       .from('assets')
-      .insert({
+      .insert([{
         project_id: project.id,
         user_id: user.id,
         type: validatedData.assetType,
         status: 'in_progress',
         is_watermarked: isFree, // Free users get watermarked assets
-      })
+      }] as any)
       .select()
       .single();
 
@@ -199,7 +199,7 @@ export async function POST(request: NextRequest) {
       }
 
       // Log generation
-      await supabase.from('generations').insert({
+      await supabase.from('generations').insert([{
         user_id: user.id,
         project_id: project.id,
         asset_id: asset.id,
@@ -213,7 +213,7 @@ export async function POST(request: NextRequest) {
         credits_used: 1,
         is_trial: isFree,
         processing_time_ms: processingTime,
-      });
+      }] as any);
 
       return NextResponse.json({
         success: true,
@@ -233,7 +233,7 @@ export async function POST(request: NextRequest) {
         .eq('id', asset.id);
 
       // Log failed generation
-      await supabase.from('generations').insert({
+      await supabase.from('generations').insert([{
         user_id: user.id,
         project_id: project.id,
         asset_id: asset.id,
@@ -246,7 +246,7 @@ export async function POST(request: NextRequest) {
         credits_used: 1,
         is_trial: isFree,
         error_message: generationError instanceof Error ? generationError.message : 'Unknown error',
-      });
+      }] as any);
 
       console.error('Generation failed:', generationError);
       return NextResponse.json(
