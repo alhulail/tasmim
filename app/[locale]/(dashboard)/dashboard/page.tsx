@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import { unstable_setRequestLocale, getTranslations } from 'next-intl/server';
-import { createServerSupabaseClient, getUserProfile } from '@/lib/supabase/server';
+import { createServerSupabaseClient } from '@/lib/supabase/server';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import type { Database } from '@/types/database';
+
+type UserProfile = Database['public']['Tables']['user_profiles']['Row'];
 
 // Icons
 function FolderPlusIcon({ className }: { className?: string }) {
@@ -45,9 +48,22 @@ export default async function DashboardPage({ params: { locale } }: PageProps) {
   unstable_setRequestLocale(locale);
   
   const supabase = await createServerSupabaseClient();
-  const profile = await getUserProfile();
   const t = await getTranslations('dashboard');
   const isArabic = locale === 'ar';
+
+  // Get current user
+  const { data: { user } } = await supabase.auth.getUser();
+  
+  // Fetch profile with explicit type
+  let profile: UserProfile | null = null;
+  if (user) {
+    const { data } = await supabase
+      .from('user_profiles')
+      .select('*')
+      .eq('id', user.id)
+      .single();
+    profile = data;
+  }
 
   // Fetch projects
   const { data: projects, count: projectsCount } = await supabase
