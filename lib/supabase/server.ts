@@ -39,7 +39,7 @@ export async function getUser() {
   return user;
 }
 
-export async function getUserProfile() {
+export async function getUserProfile(): Promise<Database['public']['Tables']['user_profiles']['Row'] | null> {
   const supabase = await createServerSupabaseClient();
   const { data: { user } } = await supabase.auth.getUser();
   
