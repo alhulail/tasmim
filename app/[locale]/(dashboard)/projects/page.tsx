@@ -104,7 +104,6 @@ export default async function ProjectsPage({ params: { locale } }: PageProps) {
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project) => {
             const palette = project.palette as Record<string, string> | null;
-            const assetCount = (project.assets as any)?.[0]?.count || 0;
             
             return (
               <Link 
@@ -149,10 +148,7 @@ export default async function ProjectsPage({ params: { locale } }: PageProps) {
                   </CardHeader>
                   
                   <CardContent>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-stone-500">
-                        {assetCount} {isArabic ? 'أصل' : assetCount === 1 ? 'asset' : 'assets'}
-                      </span>
+                    <div className="flex items-center justify-end text-sm">
                       <span className="text-stone-400">
                         {formatDate(project.updated_at)}
                       </span>
